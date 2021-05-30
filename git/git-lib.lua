@@ -1,4 +1,8 @@
 local git = {}
+if not syn then
+    syn = {}
+    if http.request then syn.request = http.request elseif SENTINEL_V2 then syn.request = request else syn.request = function(tbl) b = {}; b.Body = game:HttpGet(tbl['Url']); return b end end
+end
 git.clone = function(xdd) 
 a = syn.request({
 	Url = xdd,
